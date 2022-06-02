@@ -4,27 +4,27 @@ var repoContainerEl = document.querySelector("#repos-container");
 var repoSearchTerm = document.querySelector("#repo-search-term");
 
 var getUserRepos = function (user) {
-    .then(function(response) {
+    then(function (response) {
         // request was successful
         if (response.ok) {
-            response.json().then(function(data) {
+            response.json().then(function (data) {
                 displayRepos(data, user);
             });
         } else {
             alert('Error: GitHub User Not Found');
         }
     })
-    .catch(function(error) {
-        //Notice this .catch() getting chained onto the end of the '.then()' method
-        alert("Unable to connect to GitHub");
-    });
-
+        .catch(function (error) {
+            //Notice this .catch() getting chained onto the end of the '.then()' method
+            alert("Unable to connect to GitHub");
+        });
+}
 var formSubmitHandler = function (event) {
     event.preventDefault();
 
     //get value from input element
     var username = nameInputEl.value.trim();
-
+    
     if (username) {
         getUserRepos(username);
         nameInputEl.value = "";
